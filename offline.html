@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <title>FinanFluency | Offline</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Você está offline. Verifique sua conexão e tente novamente.">
+    
+    <!-- Estilos locais -->
+    <link rel="preload" href="assets/css/main.css" as="style">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Header -->
+    <header id="header" role="banner">
+        <div class="content">
+            <h1>FinanFluency</h1>
+            <p>Você está offline!<br/>
+                Conecte-se à internet para acessar todos os recursos.</p>
+        </div>
+        <div class="image phone"><div class="inner"><img src="images/offline.webp" alt="Modo offline" /></div></div>
+    </header>
+
+    <!-- Informação sobre o modo offline -->
+    <section class="wrapper style2 special">
+        <header class="major">
+            <h2>O que você pode fazer agora?</h2>
+        </header>
+        <p>O acesso à internet é necessário para sincronizar seus dados e utilizar todas as funcionalidades.</p>
+        <ul class="actions special">
+            <li><a href="#" class="button disabled">Aguarde a conexão...</a></li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" role="contentinfo">
+        <p class="copyright">&copy; <span id="currentYear"></span> FinanFluency. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts locais -->
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

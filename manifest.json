@@ -1,0 +1,30 @@
+{
+  "name": "FinanFluency",
+  "theme_color": "#4696e5",
+  "background_color": "#4696e5",
+  "display": "standalone",
+  "short_name": "FinanFluency",
+  "start_url": "/index.html",
+  "id": "finanfluencyff",
+  "description": "O FinanFluency é um sistema de gestão financeira projetado para ajudar usuários a dominar suas finanças de maneira simples, segura e eficiente, disponível tanto online quanto offline.\n\nPrincipais Recursos:\n\nRegistro Visual de Dados: Permite monitorar e visualizar suas finanças de forma clara.\nSincronização Automática: Garante que suas informações estejam atualizadas em todos os dispositivos.\nArmazenamento Seguro na Nuvem: Protege seus dados com segurança de nível bancário.\nMultiplataforma Integrada: Disponível para diversos dispositivos, facilitando o acesso às suas finanças.\nFilosofia Financeira:\n\nJuros Compostos: Enfatiza a importância de entender como os juros compostos podem trabalhar a seu favor nos investimentos ou contra em dívidas.\nConsciência Financeira: Destaca a necessidade de estar ciente de seus gastos diários para evitar despesas desnecessárias.\nInvestimento vs. Poupança: Incentiva o investimento ativo em vez de apenas guardar dinheiro na poupança, visando um crescimento financeiro mais robusto.\nChamada para Ação: Os usuários são incentivados a baixar o aplicativo para assumir o controle de suas finanças de forma prática e eficiente. O site fornece um botão de download direto e convida os usuários a avaliarem o aplicativo após o uso.\n\nRedes Sociais: O FinanFluency mantém presença ativa no Facebook, Twitter e Instagram, permitindo que os usuários acompanhem novidades e dicas financeiras.",
+  "categories": [
+    "business",
+    "education",
+    "finance",
+    "lifestyle",
+    "shopping",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "images/icons/appstore.webp",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/playstore.webp",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
