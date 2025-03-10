@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>FinanFluency - Lista de Dados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS da Listagem -->
+  <link rel="stylesheet" href="assets/css/list.css">
+</head>
+<body>
+  <!-- NAVBAR (pode ser repetida ou incluída dinamicamente) -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="list.html" class="active">Lista de Dados</a></li>
+      <li><a href="index.html#FuturoAPP">Download App</a></li>
+      <li><a href="index.html#one">Descubra Mais</a></li>
+    </ul>
+  </nav>
+
+  <main class="list-container">
+    <h2>Lista de Transações</h2>
+    <table id="transactionsTable">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Será populado via JavaScript -->
+      </tbody>
+    </table>
+  </main>
+
+  <script src="assets/js/list.js"></script>
+</body>
+</html>

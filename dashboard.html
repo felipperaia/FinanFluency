@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>FinanFluency - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS do Dashboard -->
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <!-- NAVBAR (pode ser repetida ou incluída dinamicamente) -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="list.html">Lista de Dados</a></li>
+      <li><a href="index.html#FuturoAPP">Download App</a></li>
+      <li><a href="index.html#one">Descubra Mais</a></li>
+    </ul>
+  </nav>
+
+  <main class="dashboard-container">
+    <section class="stats-section">
+      <div class="stat-box">
+        <h2 id="totalRecebimentos">R$0,00</h2>
+        <p>Valor Recebimentos</p>
+      </div>
+      <div class="stat-box">
+        <h2 id="totalPagamentos">R$0,00</h2>
+        <p>Valor Pagamentos</p>
+      </div>
+      <div class="stat-box">
+        <h2 id="saldoTotal">R$0,00</h2>
+        <p>Saldo</p>
+      </div>
+    </section>
+
+    <section class="chart-section">
+      <!-- Gráfico de Recebimentos x Pagamentos -->
+      <div class="chart-box">
+        <canvas id="chartRecebimentosPagamentos"></canvas>
+      </div>
+      <!-- Exemplo de outro gráfico ou gauge -->
+      <div class="chart-box">
+        <canvas id="chartAtrasos"></canvas>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Adicionar Transação</h2>
+      <form id="transactionForm">
+        <label for="type">Tipo:</label>
+        <select id="type" name="type" required>
+          <option value="RECEBIMENTO">Recebimento</option>
+          <option value="PAGAMENTO">Pagamento</option>
+        </select>
+
+        <label for="value">Valor:</label>
+        <input type="number" id="value" name="value" step="0.01" required>
+
+        <label for="description">Descrição:</label>
+        <input type="text" id="description" name="description" required>
+
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="assets/js/dashboard.js"></script>
+  <!-- Biblioteca de chart se desejar (ex: Chart.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

@@ -10,10 +10,22 @@
     <link rel="preload" href="assets/css/main.css" as="style">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
-
+    <!-- NAVBAR (pode ser repetida ou incluída dinamicamente) -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
+        </div>
+        <ul class="navbar-links">
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="list.html">Lista de Dados</a></li>
+          <li><a href="index.html#FuturoAPP">Download App</a></li>
+          <li><a href="index.html#one">Descubra Mais</a></li>
+        </ul>
+      </nav>
     <!-- Header -->
     <header id="header" role="banner">
         <div class="content">
@@ -115,7 +127,7 @@
               .catch((err) => console.error("Falha no registro do Service Worker", err));
           });
         }
-      </script>      
+      </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
