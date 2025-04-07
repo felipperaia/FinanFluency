@@ -4,7 +4,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/felipperaia/FinanFluency?style=for-the-badge&logo=visual-studio-code&color=2E74DF)
 ![GitHub license](https://img.shields.io/github/license/felipperaia/FinanFluency?style=for-the-badge&logo=creative-commons&color=EDED09)
 
-![FinanFluency Banner](public\images\icons\playstore.webp)
+![FinanFluency Banner](https://github.com/felipperaia/FinanFluency/blob/main/public/images/icons/playstore.webp)
 
 **Gerencie suas finanças com maestria!** FinanFluency é uma aplicação moderna para controle financeiro pessoal e educação monetária, desenvolvida para ajudar usuários a alcançarem fluência financeira através de ferramentas intuitivas.
 
