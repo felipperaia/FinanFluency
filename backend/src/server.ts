@@ -1,8 +1,11 @@
+// src/server.ts
 import express from 'express';
 import path from 'path';
-import cors from 'cors'; // Importe o CORS
+import cors from 'cors';
 import { connectDB } from './database';
 import financeRoutes from './routes/financeRoutes';
+import authRoutes from './routes/authRoutes';
+import userRoutes from './routes/userRoutes';
 
 async function startServer() {
   const app = express();
@@ -11,24 +14,28 @@ async function startServer() {
   await connectDB();
 
   // Middlewares
-  app.use(cors()); // Habilita CORS
+  app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // Rotas
+  // Rotas de autenticação
+  app.use('/api/auth', authRoutes);
+  // Rotas financeiras (protegidas)
   app.use('/api/finance', financeRoutes);
+  // Rotas usuários
+  app.use('/api/user', userRoutes);
 
-  // Caminho correto para arquivos estáticos (ajustado para sua estrutura)
-  app.use(express.static(path.join(__dirname, '../../'))); // Aponta para a raiz do projeto
+  // Arquivos estáticos (ajuste o caminho conforme sua estrutura)
+  app.use(express.static(path.join(__dirname, '../../public/')));
 
   // Rota principal
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../index.html')); // Caminho absoluto
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
   });
 
-  // Tratamento de erro para rotas não encontradas
+  // Rota para páginas não encontradas
   app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '../../offline.html'));
+    res.status(404).sendFile(path.join(__dirname, '../../public/offline.html'));
   });
 
   app.listen(PORT, () => {

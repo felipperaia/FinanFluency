@@ -2,9 +2,23 @@ const transactionsTableBody = document.querySelector('#transactionsTable tbody')
 
 async function fetchTransactions() {
   try {
-    const response = await fetch('/api/finance/transactions');
-    const data = await response.json();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Token não encontrado. Faça login novamente.');
+    }
 
+    const response = await fetch('/api/finance/transactions', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`  // Envia o token para filtrar os dados do usuário ativo
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    const data = await response.json();
     transactionsTableBody.innerHTML = '';
 
     data.forEach((transaction) => {
@@ -40,6 +54,7 @@ async function fetchTransactions() {
 
   } catch (error) {
     console.error('Erro ao buscar transações:', error);
+    alert('Falha ao buscar transações: ' + error.message);
   }
 }
 
@@ -47,18 +62,29 @@ async function deleteTransaction(id) {
   if (!confirm('Deseja realmente excluir esta transação?')) return;
 
   try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Token não encontrado. Faça login novamente.');
+    }
+    
     const response = await fetch(`/api/finance/transaction/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`  // Envia o token para autenticação na exclusão
+      }
     });
 
     if (response.ok) {
       alert('Transação excluída com sucesso!');
       fetchTransactions();
     } else {
-      alert('Erro ao excluir transação');
+      const result = await response.json();
+      alert(`Erro ao excluir transação: ${result.error || 'Erro desconhecido'}`);
     }
   } catch (error) {
     console.error('Erro ao excluir transação:', error);
+    alert('Erro ao excluir transação: ' + error.message);
   }
 }
 

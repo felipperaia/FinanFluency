@@ -1,0 +1,76 @@
+/* assets/css/list.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* Reutilizar estilos do navbar se desejar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0F2350;
+  padding: 0.8rem 1.5rem;
+}
+.navbar-logo a {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.navbar-links li a:hover {
+  color: #FFD700;
+}
+.navbar-links .active {
+  color: #FFD700;
+}
+
+.list-container {
+  padding: 1rem;
+}
+.list-container h2 {
+  color: #0F2350;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+table thead {
+  background-color: #0F2350;
+  color: #fff;
+}
+table th, table td {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.actions-btn {
+  background-color: #FF6347;
+  border: none;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.actions-btn:hover {
+  background-color: #FFD700;
+  color: #0F2350;
+}

@@ -1,6 +1,9 @@
+// src/models/financeModel.ts
 import mongoose, { Schema, Document } from 'mongoose';
+import { IUser } from './userModel';
 
 export interface ITransaction extends Document {
+  user: IUser['_id'];
   type: 'RECEBIMENTO' | 'PAGAMENTO';
   value: number;
   description: string;
@@ -11,6 +14,7 @@ export interface ITransaction extends Document {
 
 const transactionSchema = new Schema<ITransaction>(
   {
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     type: {
       type: String,
       enum: ['RECEBIMENTO', 'PAGAMENTO'],
@@ -27,7 +31,7 @@ const transactionSchema = new Schema<ITransaction>(
     date: {
       type: Date,
       required: true,
-      index: true // *** ALTERAÇÃO: Adicionado índice ***
+      index: true
     }
   },
   { timestamps: true }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>FinanFluency - Cadastro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS principal (reutilizando o mesmo estilo de dashboard ou um arquivo específico) -->
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <main class="auth-container">
+    <section class="auth-section">
+      <h2>Criar Conta</h2>
+      <form id="registerForm">
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p>Já tem uma conta? <a href="login.html">Entre aqui</a>.</p>
+    </section>
+  </main>
+
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

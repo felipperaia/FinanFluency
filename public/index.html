@@ -20,8 +20,7 @@
           <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
         </div>
         <ul class="navbar-links">
-          <li><a href="dashboard.html" class="active">Dashboard</a></li>
-          <li><a href="list.html">Lista de Dados</a></li>
+          <li><a href="login.html" class="active">Login</a></li>
           <li><a href="index.html#FuturoAPP">Download App</a></li>
           <li><a href="index.html#one">Descubra Mais</a></li>
         </ul>
@@ -122,7 +121,7 @@
     <script>
         if ("serviceWorker" in navigator) {
           window.addEventListener("load", () => {
-            navigator.serviceWorker.register("/service-worker.js")
+            navigator.serviceWorker.register("public//service-worker.js")
               .then((reg) => console.log("Service Worker registrado!", reg))
               .catch((err) => console.error("Falha no registro do Service Worker", err));
           });
