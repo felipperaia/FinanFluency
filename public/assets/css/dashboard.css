@@ -1,115 +1,199 @@
-/* assets/css/dashboard.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  line-height: 1.5;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0F2350;
+  padding: .8rem 1.5rem;
+  z-index: 1000;
+}
+
+.navbar-logo a {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  transition: transform .3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  top: 8px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color .2s ease;
+}
+
+.navbar-links li a:hover,
+.navbar-links .active {
+  color: #FFD700;
+}
+
+@media(max-width:768px) {
+  .navbar-toggler {
+    display: block;
   }
-  
-  /* Reutilizar estilos do navbar se desejar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0F2350;
-    padding: 0.8rem 1.5rem;
-  }
-  .navbar-logo a {
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-decoration: none;
-  }
+
   .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  .navbar-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  .navbar-links li a:hover {
-    color: #FFD700;
-  }
-  .navbar-links .active {
-    color: #FFD700;
-  }
-  
-  /* Container principal */
-  .dashboard-container {
-    padding: 1rem;
-  }
-  
-  /* Seções */
-  .stats-section {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .stat-box {
-    background-color: #fff;
-    padding: 1rem;
-    flex: 1;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-  .stat-box h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #0F2350;
-  }
-  
-  .chart-section {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .chart-box {
-    background-color: #fff;
-    padding: 1rem;
-    flex: 1;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-  
-  /* Formulário */
-  .form-section {
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-  .form-section h2 {
-    margin-top: 0;
-    color: #0F2350;
-  }
-  #transactionForm {
-    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     flex-direction: column;
-    gap: 0.8rem;
+    background: #0F2350;
+    display: none;
   }
-  #transactionForm label {
-    font-weight: bold;
+
+  .navbar-links.open {
+    display: flex;
   }
-  #transactionForm input, #transactionForm select {
-    padding: 0.4rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+
+  .navbar-links li {
+    margin: 1rem 0;
+    text-align: center;
   }
-  #transactionForm button {
-    background-color: #0F2350;
-    color: #fff;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+}
+
+.dashboard-container {
+  padding: 1rem;
+}
+
+.stats-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  background: #fff;
+  padding: 1rem;
+  flex: 1 1 200px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.stat-box h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #0F2350;
+}
+
+.chart-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.chart-box {
+  background: #fff;
+  padding: 1rem;
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+  position: relative;
+  height: 350px;
+}
+
+.form-section {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.form-section h2 {
+  margin-top: 0;
+  color: #0F2350;
+}
+
+#transactionForm {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+
+#transactionForm label {
+  font-weight: bold;
+}
+
+#transactionForm input,
+#transactionForm select {
+  padding: .4rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+#transactionForm button {
+  background: #0F2350;
+  color: #fff;
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#transactionForm button:hover {
+  background: #FFD700;
+  color: #0F2350;
+}
+
+@media(max-width:768px) {
+  .chart-box {
+    height: 250px;
   }
-  #transactionForm button:hover {
-    background-color: #FFD700;
-    color: #0F2350;
-  }
-  
+}

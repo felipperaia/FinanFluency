@@ -1,4 +1,14 @@
 // assets/js/auth.js
+// Navbar toggle
+function initNavbar() {
+  const toggler = document.querySelector('.navbar-toggler');
+  const links = document.querySelector('.navbar-links');
+  toggler.addEventListener('click', () => {
+    const exp = toggler.getAttribute('aria-expanded') === 'true';
+    toggler.setAttribute('aria-expanded', !exp);
+    links.classList.toggle('open');
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
@@ -56,4 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // Auto refresh e init
+document.addEventListener('DOMContentLoaded', () => { initNavbar(); });
   

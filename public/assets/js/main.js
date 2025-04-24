@@ -3,6 +3,16 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+// Navbar toggle
+function initNavbar() {
+	const toggler = document.querySelector('.navbar-toggler');
+	const links = document.querySelector('.navbar-links');
+	toggler.addEventListener('click', () => {
+	  const exp = toggler.getAttribute('aria-expanded') === 'true';
+	  toggler.setAttribute('aria-expanded', !exp);
+	  links.classList.toggle('open');
+	});
+  }
 
 (function($) {
 
@@ -48,3 +58,6 @@
 			});
 
 })(jQuery);
+
+// Auto refresh e init
+document.addEventListener('DOMContentLoaded', () => { initNavbar();});

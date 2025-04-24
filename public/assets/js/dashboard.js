@@ -1,169 +1,53 @@
-// Seleção de elementos do DOM
+// Elementos
 const totalRecebimentosEl = document.getElementById('totalRecebimentos');
 const totalPagamentosEl = document.getElementById('totalPagamentos');
 const saldoTotalEl = document.getElementById('saldoTotal');
 const transactionForm = document.getElementById('transactionForm');
+let chartRP, chartAtrasos;
 
-// Variáveis para os gráficos
-let chartRP = null;
-let chartAtrasos = null;
+// Navbar toggle
+function initNavbar() {
+  const toggler = document.querySelector('.navbar-toggler');
+  const links = document.querySelector('.navbar-links');
+  toggler.addEventListener('click', () => {
+    const exp = toggler.getAttribute('aria-expanded') === 'true';
+    toggler.setAttribute('aria-expanded', !exp);
+    links.classList.toggle('open');
+  });
+}
 
-// Função para criar/atualizar gráficos
+// Gráficos
 function createCharts(data) {
-    const ctxRecebimentosPagamentos = document.getElementById('chartRecebimentosPagamentos');
-    const ctxAtrasos = document.getElementById('chartAtrasos');
-
-    // Destruir gráficos existentes, se houver
-    if (chartRP) chartRP.destroy();
-    if (chartAtrasos) chartAtrasos.destroy();
-
-    // Gráfico de Recebimentos vs Pagamentos
-    chartRP = new Chart(ctxRecebimentosPagamentos, {
-        type: 'bar',
-        data: {
-            labels: data.labels,
-            datasets: [
-                {
-                    label: 'Recebimentos',
-                    data: data.recebimentos,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Pagamentos',
-                    data: data.pagamentos,
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return 'R$' + value.toFixed(2);
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // Gráfico de Atrasos (Sem Atraso x Atrasados)
-    chartAtrasos = new Chart(ctxAtrasos, {
-        type: 'doughnut',
-        data: {
-            labels: ['Sem Atraso', 'Atrasados'],
-            datasets: [{
-                data: [data.qtdSemAtraso, data.qtdAtrasados],
-                backgroundColor: ['#36A2EB', '#FF6384'],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.label + ': ' + context.raw + ' transações';
-                        }
-                    }
-                }
-            }
-        }
-    });
+  const ctx1 = document.getElementById('chartRecebimentosPagamentos');
+  const ctx2 = document.getElementById('chartAtrasos');
+  if (chartRP) chartRP.destroy(); if (chartAtrasos) chartAtrasos.destroy();
+  chartRP = new Chart(ctx1, { type: 'bar', data: { labels: data.labels, datasets: [{ label: 'Recebimentos', data: data.recebimentos, borderWidth: 1 }, { label: 'Pagamentos', data: data.pagamentos, borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: v => `R$${v.toFixed(2)}` } } } } });
+  chartAtrasos = new Chart(ctx2, { type: 'doughnut', data: { labels: ['Sem Atraso', 'Atrasados'], datasets: [{ data: [data.qtdSemAtraso, data.qtdAtrasados], hoverOffset: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} transações` } } } } });
 }
 
-// Função para atualizar os cards de estatísticas
-function updateStats(data) {
-    totalRecebimentosEl.textContent = `R$${data.totalRecebimentos.toFixed(2)}`;
-    totalPagamentosEl.textContent = `R$${data.totalPagamentos.toFixed(2)}`;
-    saldoTotalEl.textContent = `R$${data.saldo.toFixed(2)}`;
-}
+// Stats
+function updateStats(data) { totalRecebimentosEl.textContent = `R$${data.totalRecebimentos.toFixed(2)}`; totalPagamentosEl.textContent = `R$${data.totalPagamentos.toFixed(2)}`; saldoTotalEl.textContent = `R$${data.saldo.toFixed(2)}`; }
 
-// Função principal para buscar dados do dashboard com envio do token JWT
+// Fetch
 async function fetchDashboardData() {
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            throw new Error('Token não encontrado. Faça login novamente.');
-        }
-
-        const response = await fetch('/api/finance/summary', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        
-        if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status}`);
-        }
-
-        const data = await response.json();
-        updateStats(data);
-        createCharts(data);
-
-    } catch (error) {
-        console.error('Erro ao buscar dados do dashboard:', error);
-        alert('Falha ao atualizar dashboard: ' + error.message);
-    }
+  try {
+    const token = localStorage.getItem('token'); if (!token) throw new Error('Token não encontrado.');
+    const res = await fetch('/api/finance/summary', { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`);
+    const data = await res.json(); updateStats(data); createCharts(data);
+  } catch (err) { console.error(err); alert('Falha ao atualizar dashboard: ' + err.message); }
 }
 
-// Event listener para o formulário de transação, incluindo o token JWT
-transactionForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = {
-        type: transactionForm.type.value,
-        value: parseFloat(transactionForm.value.value),
-        description: transactionForm.description.value,
-        date: transactionForm.date.value
-    };
-
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            throw new Error('Token não encontrado. Faça login novamente.');
-        }
-
-        const response = await fetch('/api/finance/transaction', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-        
-        if (response.ok) {
-            transactionForm.reset();
-            await fetchDashboardData();
-            alert('Transação adicionada com sucesso!');
-        } else {
-            alert(`Erro: ${result.error || 'Erro desconhecido'}`);
-        }
-    } catch (error) {
-        console.error('Erro ao enviar transação:', error);
-        alert('Erro de conexão com o servidor: ' + error.message);
-    }
+// Form
+transactionForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const formData = { type: transactionForm.type.value, value: parseFloat(transactionForm.value.value), description: transactionForm.description.value, date: transactionForm.date.value };
+  try {
+    const token = localStorage.getItem('token'); if (!token) throw new Error('Token não encontrado.');
+    const res = await fetch('/api/finance/transaction', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(formData) });
+    const result = await res.json(); if (res.ok) { transactionForm.reset(); await fetchDashboardData(); alert('Transação adicionada!'); } else alert(`Erro: ${result.error || 'Desconhecido'}`);
+  } catch (err) { console.error(err); alert('Erro de conexão: ' + err.message); }
 });
 
-// Atualização automática a cada 30 segundos
-setInterval(fetchDashboardData, 30000);
-
-// Inicialização: busca os dados ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    fetchDashboardData();
-});
+// Auto refresh e init
+document.addEventListener('DOMContentLoaded', () => { initNavbar();});

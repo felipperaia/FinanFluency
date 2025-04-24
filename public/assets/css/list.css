@@ -1,23 +1,60 @@
-/* assets/css/list.css */
-body {
+/* Reset básico e corpo */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
+  line-height: 1.5;
 }
 
-/* Reutilizar estilos do navbar se desejar */
+/* NAVBAR */
 .navbar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #0F2350;
   padding: 0.8rem 1.5rem;
+  z-index: 1000;
 }
 .navbar-logo a {
   color: #fff;
   font-size: 1.4rem;
   font-weight: bold;
   text-decoration: none;
+}
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.navbar-toggler-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  position: relative;
+}
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+.navbar-toggler-icon::after {
+  top: 8px;
 }
 .navbar-links {
   list-style: none;
@@ -31,18 +68,45 @@ body {
   font-weight: 500;
   transition: color 0.2s ease;
 }
-.navbar-links li a:hover {
-  color: #FFD700;
-}
+.navbar-links li a:hover,
 .navbar-links .active {
   color: #FFD700;
 }
 
+/* Responsivo para navbar */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #0F2350;
+    display: none;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .navbar-links.open {
+    display: flex;
+  }
+  .navbar-links li {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+}
+
+/* LISTA E TABELA */
 .list-container {
   padding: 1rem;
 }
 .list-container h2 {
   color: #0F2350;
+  margin-bottom: 1rem;
+}
+.table-responsive {
+  overflow-x: auto;
 }
 table {
   width: 100%;
@@ -50,16 +114,17 @@ table {
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
-table thead {
+thead {
   background-color: #0F2350;
   color: #fff;
 }
-table th, table td {
+th, td {
   padding: 0.8rem;
   border: 1px solid #ccc;
   text-align: left;
+  font-size: 0.9rem;
 }
-table tbody tr:nth-child(even) {
+tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 .actions-btn {
@@ -69,6 +134,7 @@ table tbody tr:nth-child(even) {
   padding: 0.4rem 0.8rem;
   cursor: pointer;
   border-radius: 4px;
+  font-size: 0.9rem;
 }
 .actions-btn:hover {
   background-color: #FFD700;

@@ -8,11 +8,14 @@
   <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-  <!-- NAVBAR (pode ser repetida ou incluída dinamicamente) -->
+  <!-- NAVBAR RESPONSIVO -->
   <nav class="navbar">
     <div class="navbar-logo">
       <a href="index.html" aria-label="FinanFluency - Página Inicial">FinanFluency</a>
     </div>
+    <button class="navbar-toggler" aria-label="Menu" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <ul class="navbar-links">
       <li><a href="list.html">Lista de Dados</a></li>
       <li><a href="perfil.html">Perfil</a></li>
@@ -38,11 +41,9 @@
     </section>
 
     <section class="chart-section">
-      <!-- Gráfico de Recebimentos x Pagamentos -->
       <div class="chart-box">
         <canvas id="chartRecebimentosPagamentos"></canvas>
       </div>
-      <!-- Exemplo de outro gráfico ou gauge -->
       <div class="chart-box">
         <canvas id="chartAtrasos"></canvas>
       </div>
@@ -71,8 +72,8 @@
     </section>
   </main>
 
-  <script src="assets/js/dashboard.js"></script>
-  <!-- Biblioteca de chart se desejar (ex: Chart.js) -->
+  <!-- Bibliotecas -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 </html>

@@ -10,14 +10,14 @@ async function fetchTransactions() {
     const response = await fetch('/api/finance/transactions', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`  // Envia o token para filtrar os dados do usuário ativo
+        'Authorization': `Bearer ${token}`
       }
     });
 
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);
     }
-    
+
     const data = await response.json();
     transactionsTableBody.innerHTML = '';
 
@@ -71,7 +71,7 @@ async function deleteTransaction(id) {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`  // Envia o token para autenticação na exclusão
+        'Authorization': `Bearer ${token}`
       }
     });
 
@@ -88,4 +88,5 @@ async function deleteTransaction(id) {
   }
 }
 
+// Inicializa
 fetchTransactions();
