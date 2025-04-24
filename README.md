@@ -1,4 +1,5 @@
-# FinanFluency 💹 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/felipperaia)
+# FinanFluency 💹
+ [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/felipperaia)
 
 ![GitHub stars](https://img.shields.io/github/stars/felipperaia/FinanFluency?style=for-the-badge&logo=starship&color=4CC417)
 ![GitHub issues](https://img.shields.io/github/issues/felipperaia/FinanFluency?style=for-the-badge&logo=visual-studio-code&color=2E74DF)
@@ -80,7 +81,7 @@ Siga estes passos para configurar o projeto localmente:
 
 ---
 
-⚠️ Observação: É necessário ter instalado o Node.JS e o MongoDB na máquina para fazer os testes.
+⚠️ Observação: É necessário ter instalado o Node.JS na máquina para fazer os testes.
 
 📄 Licença
 Distribuído sob licença MIT. Veja LICENSE para mais informações.
