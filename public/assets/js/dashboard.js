@@ -50,4 +50,5 @@ transactionForm.addEventListener('submit', async e => {
 });
 
 // Auto refresh e init
-document.addEventListener('DOMContentLoaded', () => { initNavbar();});
+document.addEventListener('DOMContentLoaded', () => { initNavbar(); fetchDashboardData(); });
+setInterval(fetchDashboardData, 30000);
